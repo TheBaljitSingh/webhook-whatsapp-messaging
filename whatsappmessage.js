@@ -3,7 +3,6 @@ import { redisClient,  } from "./redis.js";
 
 
 
-
 export async function handleIncomingMessage(msg) {
   // msg is now the message object directly: entry[0].changes[0].value.messages[0]
   const saved = await WhatsappMessage.create({
@@ -23,6 +22,7 @@ export async function handleIncomingMessage(msg) {
       type: "MESSAGE_CREATED",
       messageId: saved._id.toString(),
       customerId: saved.customerId.toString(),
+      message:msg.text?.body || ''
     })
   );
 
