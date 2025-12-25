@@ -1,5 +1,5 @@
 import WhatsappMessage from "./models/WhatsappMessage.js";
-import { redisPublisher } from "./redis.js";
+import { redisClient,  } from "./redis.js";
 
 
 
@@ -17,7 +17,7 @@ export async function handleIncomingMessage(msg) {
   });
 
 
-  await redisPublisher.publish(
+  await redisClient.publish(
   "whatsapp.events",
     JSON.stringify({
       type: "MESSAGE_CREATED",
@@ -37,7 +37,7 @@ export async function handleStatusUpdate(status) {
 
   if (!msg) return;
 
-  await redisPublisher.publish(
+  await redisClient.publish(
     "whatsapp.events",
     JSON.stringify({
       type: "MESSAGE_STATUS_UPDATED",

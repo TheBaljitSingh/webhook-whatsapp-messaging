@@ -1,26 +1,21 @@
 import { createClient } from "redis";
+import dotenv from "dotenv"
+dotenv.config({ path: '.env' })
 
 const REDIS_URL = process.env.REDIS_URL;
-
-
-export const redisPublisher = createClient({
-  url: REDIS_URL,
-});
-
-export const redisSubscriber = createClient({
-  url: REDIS_URL
-});
-
+console.log("REDIS_URL",REDIS_URL);
+const isTLS = REDIS_URL.startsWith("rediss://");
 
 export const redisClient = createClient({
-  url: REDIS_URL
+  url: REDIS_URL,
+  socket: isTLS ? { tls: true, rejectUnauthorized: false } : undefined
 });
+
 
 
 export async function connectRedis() {
   try {
-    if (!redisPublisher.isOpen) await redisPublisher.connect();
-    if (!redisSubscriber.isOpen) await redisSubscriber.connect();
+  
     if (!redisClient.isOpen) await redisClient.connect();
 
     console.log("✅ Redis connected (publisher, subscriber, client)");
