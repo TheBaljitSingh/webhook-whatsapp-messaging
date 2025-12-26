@@ -25,7 +25,7 @@ export async function handleIncomingMessage(msg) {
       messageId: saved._id.toString(),
       customerId: saved.customerId.toString(),
       message:msg.text?.body || '',
-      context: msg?.context.toString()
+      context: msg?.context
     })
   );
 
