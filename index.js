@@ -48,6 +48,8 @@ app.post('/', async (req, res) => {
     // We need to differentiate them or handle both
     const body = req.body;
 
+    console.log(body);
+
     // Check if this is an event from a page subscription
     if (body.object === 'whatsapp_business_account') {
       const entry = body.entry?.[0];
