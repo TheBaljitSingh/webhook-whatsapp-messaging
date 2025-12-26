@@ -39,18 +39,15 @@ app.get('/', (req, res) => {
 
 // Route for POST requests
 app.post('/', async (req, res) => {
-  // const timestamp = new Date().toISOString().replace('T', ' ').slice(0, 19);
-  // console.log(`\n\nWebhook received ${timestamp}\n`);
-  // console.log(JSON.stringify(req.body, null, 2));
+  //default logs
+  const timestamp = new Date().toISOString().replace('T', ' ').slice(0, 19);
+  console.log(`\n\nWebhook received ${timestamp}\n`);
+  console.log(JSON.stringify(req.body, null, 2));
 
   try {
     // WhatsApp sends status updates and messages to the same webhook
     // We need to differentiate them or handle both
     const body = req.body;
-
-    const timestamp = new Date().toISOString().replace("T"," ").slice(0,19);
-    console.log(`\n\nWebhook received ${timestamp}\n`);
-    console.log(JSON.stringify(req.body, null, 2));
 
     // Check if this is an event from a page subscription
     if (body.object === 'whatsapp_business_account') {
