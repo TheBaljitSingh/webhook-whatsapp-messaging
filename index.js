@@ -63,6 +63,9 @@ app.post('/', async (req, res) => {
 
     res.status(200).end();
   } catch (error) {
+    if(error.code===11000){
+      console.log("dublicate");
+    }
     console.error("Error handling webhook:", error);
     res.status(500).end();
   }
