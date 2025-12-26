@@ -55,8 +55,9 @@ app.post('/', async (req, res) => {
       const changes = entry?.changes?.[0];
       const value = changes?.value;
 
+
       if (value?.messages) {
-        await handleIncomingMessage(value.messages[0]);
+        await handleIncomingMessage(value.messages[0]); // sending all the messages with context
       }
     }
 
