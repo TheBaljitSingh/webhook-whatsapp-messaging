@@ -5,6 +5,7 @@ import { redisClient,  } from "./redis.js";
 
 export async function handleIncomingMessage(msg) {
   // msg is now the message object directly: entry[0].changes[0].value.messages[0]
+  console.log("msg",msg);
   const saved = await WhatsappMessage.create({
     whatsappMessageId: msg.id,
     from: msg.from,

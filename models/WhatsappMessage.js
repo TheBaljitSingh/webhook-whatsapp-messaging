@@ -39,7 +39,9 @@ const whatsappMessageSchema = new Schema(
       type: String,
       default: "",
     },
-
+    context:{
+      type: Object,
+    },
     templateName: {
       type: String,
       default: null,
