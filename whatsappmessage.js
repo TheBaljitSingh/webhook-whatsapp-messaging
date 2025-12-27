@@ -25,7 +25,8 @@ export async function handleIncomingMessage(msg) {
       messageId: saved._id.toString(),
       customerId: saved.customerId.toString(),
       text:msg.text?.body || '',
-      context: msg?.context
+      context: msg?.context,
+      timestamp: new Date(Number(msg.timestamp) * 1000)
     })
   );
 
