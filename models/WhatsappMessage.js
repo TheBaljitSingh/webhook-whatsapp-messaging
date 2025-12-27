@@ -35,7 +35,7 @@ const whatsappMessageSchema = new Schema(
       default: "text",
     },
 
-    message: {
+    text: {
       type: String,
       default: "",
     },
