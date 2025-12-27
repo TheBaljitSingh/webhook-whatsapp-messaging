@@ -11,7 +11,7 @@ export async function handleIncomingMessage(msg) {
     from: msg.from,
     phone: msg.from,
     customerId: msg.from,
-    message: msg.text?.body || msg.type, // Fallback if not text
+    text: msg.text?.body || msg.type, // Fallback if not text
     context: msg?.context, // context(if any reply message)
     direction: "INBOUND",
     timestamp: new Date(Number(msg.timestamp) * 1000),
@@ -24,7 +24,7 @@ export async function handleIncomingMessage(msg) {
       type: "MESSAGE_CREATED",
       messageId: saved._id.toString(),
       customerId: saved.customerId.toString(),
-      message:msg.text?.body || '',
+      text:msg.text?.body || '',
       context: msg?.context
     })
   );
